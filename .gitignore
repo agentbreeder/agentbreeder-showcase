@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+node_modules/
+playwright-report/
+demos/**/screenshots/*.png
+.agentbreeder/

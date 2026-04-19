@@ -1,0 +1,12 @@
+{
+  "name": "agentbreeder-showcase",
+  "version": "1.0.0",
+  "scripts": {
+    "demo": "npx playwright test demos/",
+    "demo:report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "typescript": "^5.4.0"
+  }
+}
