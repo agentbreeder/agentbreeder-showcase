@@ -8,7 +8,7 @@ PROMPT = "What are the top 3 benefits of AI agents in enterprise?"
 
 llm = LLM(
     model="anthropic/claude-sonnet-4-6",
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),
+    api_key=os.environ["ANTHROPIC_API_KEY"],
 )
 
 analyst = Agent(

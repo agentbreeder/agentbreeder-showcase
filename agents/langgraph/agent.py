@@ -26,6 +26,8 @@ class State(TypedDict):
 def answer(state: State) -> State:
     try:
         response = llm.invoke(state["prompt"])
+        if not response.content:
+            raise ValueError("Empty response from Ollama model")
         return {"response": response.content}
     except Exception as e:
         raise RuntimeError(f"LangGraph/Ollama agent failed: {e}") from e
