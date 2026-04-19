@@ -1,0 +1,16 @@
+# agents/openai-agents/agent.yaml
+name: demo-openai-agents
+version: 1.0.0
+team: showcase
+owner: saha.rajit@gmail.com
+
+framework: openai_agents
+model:
+  primary: gpt-5.2
+  fallback: gpt-4o
+
+deploy:
+  cloud: local
+  scaling:
+    min: 1
+    max: 3
