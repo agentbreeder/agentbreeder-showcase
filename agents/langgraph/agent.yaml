@@ -1,0 +1,16 @@
+# agents/langgraph/agent.yaml
+name: demo-langgraph
+version: 1.0.0
+team: showcase
+owner: saha.rajit@gmail.com
+
+framework: langgraph
+model:
+  primary: ollama/gemma4
+  fallback: claude-sonnet-4-6
+
+deploy:
+  cloud: local
+  scaling:
+    min: 1
+    max: 1
