@@ -181,6 +181,68 @@ AZURE_LOCATION=eastus
 
 ---
 
+## UI Demos (Playwright)
+
+Each agent also has a Playwright-automated demo that walks through creation via the AgentBreeder no-code visual builder at `http://localhost:3001`. This showcases the full no-code → low-code → full-code tier progression.
+
+### Demo Flow (per agent)
+
+```
+dashboard → New Agent → drag-and-drop builder → configure model/tools →
+preview YAML → eject to SDK → save screenshots at each step
+```
+
+### Directory Structure
+
+```
+agentbreeder-showcase/
+└── demos/
+    ├── shared/
+    │   └── helpers.ts          # reusable Playwright helpers
+    ├── claude-sdk/
+    │   ├── demo.spec.ts        # Playwright test
+    │   └── screenshots/        # auto-captured at each step
+    ├── openai-agents/
+    │   ├── demo.spec.ts
+    │   └── screenshots/
+    ├── google-adk/
+    │   ├── demo.spec.ts
+    │   └── screenshots/
+    ├── langgraph/
+    │   ├── demo.spec.ts
+    │   └── screenshots/
+    └── crewai/
+        ├── demo.spec.ts
+        └── screenshots/
+```
+
+### Playwright Demo Steps (each `demo.spec.ts`)
+
+1. Navigate to `http://localhost:3001`
+2. Click **New Agent** → enter name + team
+3. Select framework from dropdown (LangGraph / CrewAI / Claude SDK / etc.)
+4. Set model via provider selector
+5. Screenshot: **"builder-config.png"**
+6. Click **Preview YAML** tab → screenshot: **"yaml-preview.png"**
+7. Click **Deploy** → wait for status `running` → screenshot: **"deployed.png"**
+8. Click **Eject → SDK** (`agentbreeder eject --to sdk`) → screenshot: **"ejected-sdk.png"**
+9. Open **Chat** panel → send demo prompt → screenshot: **"chat-response.png"**
+
+### Running All UI Demos
+
+```bash
+agentbreeder up                             # ensure dashboard is running
+npx playwright install chromium
+npx playwright test demos/                  # run all 5 demo specs in parallel
+npx playwright show-report                  # view HTML report with screenshots
+```
+
+### Output
+
+Each agent produces 5 screenshots + a Playwright HTML report showing the full no-code → deploy → eject journey.
+
+---
+
 ## Error Handling
 
 - Any agent that fails returns `{ error: "<message>", latency: null }` — other agents continue
@@ -197,3 +259,6 @@ AZURE_LOCATION=eastus
 - [ ] AWS deployment succeeds for 4 agents
 - [ ] Azure deployment succeeds for 4 agents
 - [ ] Audit trail visible in AgentBreeder dashboard (`http://localhost:3001`)
+- [ ] All 5 Playwright UI demos run and produce screenshots
+- [ ] YAML preview and SDK eject demonstrated for each agent
+- [ ] Playwright HTML report generated at `playwright-report/index.html`
