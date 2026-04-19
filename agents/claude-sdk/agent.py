@@ -10,12 +10,17 @@ PROMPT = "What are the top 3 benefits of AI agents in enterprise?"
 
 
 def run(prompt: str = PROMPT) -> str:
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=512,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return message.content[0].text
+    try:
+        message = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=512,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        if not message.content:
+            raise ValueError("Empty response from Anthropic API")
+        return message.content[0].text
+    except Exception as e:
+        raise RuntimeError(f"Claude SDK agent failed: {e}") from e
 
 
 if __name__ == "__main__":

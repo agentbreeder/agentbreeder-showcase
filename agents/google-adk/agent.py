@@ -14,8 +14,11 @@ agent = Agent(
 
 
 def run(prompt: str = PROMPT) -> str:
-    response = agent.run(prompt)
-    return response.text
+    try:
+        response = agent.run(prompt)
+        return response.text
+    except Exception as e:
+        raise RuntimeError(f"Google ADK agent failed: {e}") from e
 
 
 if __name__ == "__main__":

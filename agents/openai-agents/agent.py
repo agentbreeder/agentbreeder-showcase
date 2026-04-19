@@ -14,8 +14,11 @@ agent = Agent(
 
 
 def run(prompt: str = PROMPT) -> str:
-    result = Runner.run_sync(agent, prompt)
-    return result.final_output
+    try:
+        result = Runner.run_sync(agent, prompt)
+        return result.final_output
+    except Exception as e:
+        raise RuntimeError(f"OpenAI Agents agent failed: {e}") from e
 
 
 if __name__ == "__main__":
