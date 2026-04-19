@@ -103,26 +103,55 @@ deploy:
 ## Deployment Pipeline
 
 ### Phase 1 — Local (Docker Compose)
-1. Install AgentBreeder: `pip install agentbreeder`
-2. Install Ollama + pull Gemma 4: `ollama pull gemma4`
-3. Start AgentBreeder platform: `docker compose up -d`
-4. `agentbreeder deploy` for each agent (or `deploy/local.sh` runs all 5)
-5. `agentbreeder chat orchestration` to run the showcase
+```bash
+pip install agentbreeder
+ollama pull gemma4                          # pull local model
+agentbreeder up                             # start full local platform stack
+agentbreeder init                           # scaffold each agent (interactive wizard)
+agentbreeder validate                       # validate all agent.yaml files before deploying
+agentbreeder deploy                         # deploy each agent (cloud: local)
+agentbreeder status                         # confirm all 5 agents running
+agentbreeder list                           # verify registry entries
+agentbreeder orchestration run showcase     # fan-out-fan-in across all 5
+agentbreeder chat demo-claude-sdk           # interactive test of individual agent
+agentbreeder logs demo-langgraph            # tail logs for debugging
+```
 
 ### Phase 2 — GCP (Cloud Run)
-- Set `deploy.cloud: gcp` in each agent.yaml (or override via `--cloud gcp`)
-- Authenticate: `gcloud auth application-default login`
-- Run `deploy/gcp.sh` — deploys all 5 agents to Cloud Run
+```bash
+gcloud auth application-default login
+agentbreeder provider add gcp               # configure GCP provider
+agentbreeder secret set ANTHROPIC_API_KEY   # store secrets in GCP Secret Manager
+agentbreeder deploy --cloud gcp             # deploy all agents to Cloud Run
+agentbreeder status                         # verify deployments
+agentbreeder eval run --scorer semantic     # run evaluations on cloud agents
+```
 
 ### Phase 3 — AWS (ECS Fargate)
-- Set `deploy.cloud: aws`
-- Authenticate: `aws configure` or use existing profile
-- Run `deploy/aws.sh`
+```bash
+aws configure                               # or use existing profile
+agentbreeder provider add aws
+agentbreeder secret set ANTHROPIC_API_KEY   # store in AWS Secrets Manager
+agentbreeder deploy --cloud aws
+agentbreeder status
+agentbreeder eval compare                   # compare AWS vs GCP results
+```
 
 ### Phase 4 — Azure (Container Apps)
-- Set `deploy.cloud: azure`
-- Authenticate: `az login`
-- Run `deploy/azure.sh`
+```bash
+az login
+agentbreeder provider add azure
+agentbreeder secret set ANTHROPIC_API_KEY   # store in Azure Key Vault
+agentbreeder deploy --cloud azure
+agentbreeder status
+agentbreeder scan                           # discover any MCP servers in Azure env
+```
+
+### Teardown (any cloud)
+```bash
+agentbreeder teardown demo-claude-sdk       # remove individual agent + infra
+agentbreeder down                           # stop local platform stack
+```
 
 **Note:** `demo-langgraph` (Ollama/gemma4) is local-only — cloud deployments use `claude-sonnet-4-6` as its fallback model automatically.
 
