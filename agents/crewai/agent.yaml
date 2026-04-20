@@ -14,3 +14,5 @@ deploy:
   scaling:
     min: 1
     max: 3
+  env_vars:
+    ANTHROPIC_API_KEY: "secret://ANTHROPIC_API_KEY"

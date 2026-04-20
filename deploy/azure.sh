@@ -28,7 +28,7 @@ agentbreeder secret set GOOGLE_API_KEY --backend azure
 # Deploy all agents to Azure Container Apps
 for agent_dir in agents/*/; do
   agent_name=$(grep '^name:' "$agent_dir/agent.yaml" | awk '{print $2}')
-  (cd "$agent_dir" && agentbreeder deploy --cloud azure)
+  (cd "$agent_dir" && agentbreeder deploy --target azure)
   echo "  ✓ $agent_name → Azure Container Apps"
 done
 

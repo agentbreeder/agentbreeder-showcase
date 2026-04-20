@@ -16,6 +16,9 @@ _agent = Agent(
     instruction="You are a helpful enterprise AI analyst. Answer concisely.",
 )
 
+# Export as root_agent for agentbreeder's google-adk server template
+root_agent = _agent
+
 _session_service = InMemorySessionService()
 _runner = Runner(agent=_agent, app_name="showcase", session_service=_session_service)
 

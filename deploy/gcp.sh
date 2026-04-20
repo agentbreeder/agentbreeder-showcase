@@ -27,7 +27,7 @@ agentbreeder secret set GOOGLE_API_KEY --backend gcp
 # Deploy all agents (langgraph uses fallback model on cloud)
 for agent_dir in agents/*/; do
   agent_name=$(grep '^name:' "$agent_dir/agent.yaml" | awk '{print $2}')
-  (cd "$agent_dir" && agentbreeder deploy --cloud gcp)
+  (cd "$agent_dir" && agentbreeder deploy --target gcp)
   echo "  ✓ $agent_name → GCP Cloud Run"
 done
 

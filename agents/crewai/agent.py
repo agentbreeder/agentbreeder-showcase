@@ -3,6 +3,7 @@ from crewai import Agent, Task, Crew, LLM
 from dotenv import load_dotenv
 
 load_dotenv()
+os.environ.setdefault("CREWAI_TRACING_ENABLED", "false")
 
 PROMPT = "What are the top 3 benefits of AI agents in enterprise?"
 

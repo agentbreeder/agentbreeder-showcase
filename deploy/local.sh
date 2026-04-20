@@ -19,7 +19,7 @@ done
 echo "→ Deploying agents..."
 for agent_dir in agents/*/; do
   agent_name=$(grep '^name:' "$agent_dir/agent.yaml" | awk '{print $2}')
-  (cd "$agent_dir" && agentbreeder deploy --cloud local)
+  (cd "$agent_dir" && agentbreeder deploy --target local)
   echo "  ✓ $agent_name deployed"
 done
 

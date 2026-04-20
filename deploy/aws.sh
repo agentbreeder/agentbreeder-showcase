@@ -24,7 +24,7 @@ agentbreeder secret set GOOGLE_API_KEY --backend aws
 # Deploy all agents to ECS Fargate
 for agent_dir in agents/*/; do
   agent_name=$(grep '^name:' "$agent_dir/agent.yaml" | awk '{print $2}')
-  (cd "$agent_dir" && agentbreeder deploy --cloud aws)
+  (cd "$agent_dir" && agentbreeder deploy --target aws)
   echo "  ✓ $agent_name → AWS ECS Fargate"
 done
 
