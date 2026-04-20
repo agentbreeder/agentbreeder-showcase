@@ -1,26 +1,16 @@
 name: showcase
 version: 1.0.0
 team: showcase
-strategy: fan-out-fan-in
+strategy: fan_out_fan_in
 
 agents:
-  - demo-claude-sdk
-  - demo-openai-agents
-  - demo-google-adk
-  - demo-langgraph
-  - demo-crewai
-
-input:
-  prompt: "What are the top 3 benefits of AI agents in enterprise?"
-
-output:
-  format: table
-  columns:
-    - framework
-    - model
-    - latency_ms
-    - response_preview
-  truncate_response: 120
-
-timeout_seconds: 60
-on_agent_failure: continue
+  demo-claude-sdk:
+    ref: demo-claude-sdk
+  demo-openai-agents:
+    ref: demo-openai-agents
+  demo-google-adk:
+    ref: demo-google-adk
+  demo-langgraph:
+    ref: demo-langgraph
+  demo-crewai:
+    ref: demo-crewai
