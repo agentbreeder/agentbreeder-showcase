@@ -5,6 +5,14 @@ echo "=== AgentBreeder Showcase — Azure Deploy ==="
 set -a && source .env && set +a
 source venv/bin/activate
 
+# Docker socket fix for macOS Docker Desktop
+export DOCKER_HOST=unix://"$HOME/.docker/run/docker.sock"
+
+# Prerequisites check
+: "${AZURE_SUBSCRIPTION_ID:?AZURE_SUBSCRIPTION_ID not set in .env}"
+: "${AZURE_RESOURCE_GROUP:?AZURE_RESOURCE_GROUP not set in .env}"
+: "${AZURE_LOCATION:?AZURE_LOCATION not set in .env}"
+
 # Validate all agent configs before deploying
 echo "→ Validating all agent configs..."
 for agent_dir in agents/*/; do
@@ -14,25 +22,20 @@ done
 # Authenticate
 az login
 
-# Configure provider
-agentbreeder provider add azure \
-  --subscription "$AZURE_SUBSCRIPTION_ID" \
-  --resource-group "$AZURE_RESOURCE_GROUP" \
-  --location "$AZURE_LOCATION"
-
-# Store secrets in Azure Key Vault
-agentbreeder secret set ANTHROPIC_API_KEY --backend azure
-agentbreeder secret set OPENAI_API_KEY --backend azure
-agentbreeder secret set GOOGLE_API_KEY --backend azure
+# Store secrets in Azure Key Vault (--prefix "" avoids path separator issues)
+echo "→ Storing secrets in Azure Key Vault..."
+agentbreeder secret set ANTHROPIC_API_KEY --value "$ANTHROPIC_API_KEY" --backend azure --prefix ""
+agentbreeder secret set OPENAI_API_KEY --value "$OPENAI_API_KEY" --backend azure --prefix ""
+agentbreeder secret set GOOGLE_API_KEY --value "$GOOGLE_API_KEY" --backend azure --prefix ""
 
 # Deploy all agents to Azure Container Apps
 for agent_dir in agents/*/; do
   agent_name=$(grep '^name:' "$agent_dir/agent.yaml" | awk '{print $2}')
-  (cd "$agent_dir" && agentbreeder deploy --target azure)
+  echo "  → Deploying $agent_name..."
+  agentbreeder deploy "$agent_dir/agent.yaml" --target azure
   echo "  ✓ $agent_name → Azure Container Apps"
 done
 
 agentbreeder status
-agentbreeder scan
 echo ""
 echo "=== Azure deployment complete ==="
