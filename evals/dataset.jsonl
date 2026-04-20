@@ -1,0 +1,5 @@
+{"input": {"message": "What are the top 3 benefits of AI agents in enterprise?"}, "expected_output": "productivity, cost reduction, automation", "agent": "demo-claude-sdk", "tags": ["enterprise", "benefits"]}
+{"input": {"message": "List 3 benefits of AI agents in enterprise"}, "expected_output": "1. productivity 2. cost 3. automation", "agent": "demo-openai-agents", "tags": ["enterprise", "benefits"]}
+{"input": {"message": "What AI use cases exist in healthcare?"}, "expected_output": "clinical decision support, medical imaging, drug discovery", "agent": "demo-google-adk", "tags": ["healthcare", "use-cases"]}
+{"input": {"message": "What AI implementation patterns exist?"}, "expected_output": "ReAct, Plan-and-Execute, multi-agent orchestration", "agent": "demo-langgraph", "tags": ["technical", "patterns"]}
+{"input": {"message": "Analyze enterprise AI adoption barriers"}, "expected_output": "skills gap, data quality, integration complexity", "agent": "demo-crewai", "tags": ["enterprise", "adoption"]}

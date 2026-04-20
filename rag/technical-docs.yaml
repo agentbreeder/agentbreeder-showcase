@@ -1,0 +1,20 @@
+name: technical-docs
+version: 1.0.0
+description: "Technical AI/ML implementation guides and best practices — for langgraph agent"
+team: showcase
+owner: saha.rajit@gmail.com
+backend: pgvector
+embedding_model:
+  provider: openai
+  name: text-embedding-3-small
+  dimensions: 1536
+chunking:
+  strategy: recursive
+  chunk_size: 512
+  chunk_overlap: 50
+sources:
+  - type: file
+    path: "rag/docs/technical/*.md"
+search:
+  hybrid: false
+  default_top_k: 5

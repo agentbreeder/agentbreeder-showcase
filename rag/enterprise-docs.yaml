@@ -1,0 +1,20 @@
+name: enterprise-docs
+version: 1.0.0
+description: "Enterprise AI benefits, ROI case studies, and adoption patterns — for crewai agent"
+team: showcase
+owner: saha.rajit@gmail.com
+backend: pgvector
+embedding_model:
+  provider: openai
+  name: text-embedding-3-small
+  dimensions: 1536
+chunking:
+  strategy: recursive
+  chunk_size: 512
+  chunk_overlap: 50
+sources:
+  - type: file
+    path: "rag/docs/enterprise/*.md"
+search:
+  hybrid: false
+  default_top_k: 5

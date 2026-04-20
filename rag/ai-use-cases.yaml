@@ -1,0 +1,20 @@
+name: ai-use-cases
+version: 1.0.0
+description: "AI use cases across industries with implementation examples — for google-adk agent"
+team: showcase
+owner: saha.rajit@gmail.com
+backend: pgvector
+embedding_model:
+  provider: openai
+  name: text-embedding-3-small
+  dimensions: 1536
+chunking:
+  strategy: recursive
+  chunk_size: 512
+  chunk_overlap: 50
+sources:
+  - type: file
+    path: "rag/docs/ai-use-cases/*.md"
+search:
+  hybrid: false
+  default_top_k: 5

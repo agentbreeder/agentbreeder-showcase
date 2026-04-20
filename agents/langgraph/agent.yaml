@@ -9,6 +9,9 @@ model:
   primary: ollama/llama3.2
   fallback: ollama/llama3.1
 
+knowledge_bases:
+  - ref: technical-docs
+
 deploy:
   cloud: local
   scaling:
@@ -16,3 +19,4 @@ deploy:
     max: 3
   env_vars:
     OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+    OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"

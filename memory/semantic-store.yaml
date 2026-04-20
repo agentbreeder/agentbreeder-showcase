@@ -1,0 +1,10 @@
+name: semantic-store
+version: 1.0.0
+description: "Long-term semantic memory for openai-agents (PostgreSQL)"
+team: showcase
+owner: saha.rajit@gmail.com
+backend: postgresql
+memory_type: semantic
+config:
+  namespace_pattern: "{agent_id}:{session_id}"
+scope: agent

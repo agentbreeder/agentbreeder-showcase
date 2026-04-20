@@ -1,0 +1,12 @@
+name: session-buffer
+version: 1.0.0
+description: "Short-term conversation buffer for all showcase agents (Redis, 10-turn window, 1hr TTL)"
+team: showcase
+owner: saha.rajit@gmail.com
+backend: redis
+memory_type: buffer_window
+config:
+  max_messages: 10
+  ttl_seconds: 3600
+  namespace_pattern: "{agent_id}:{session_id}"
+scope: agent

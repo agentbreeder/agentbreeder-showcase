@@ -16,3 +16,4 @@ deploy:
     max: 3
   env_vars:
     OPENAI_API_KEY: "secret://OPENAI_API_KEY"
+    OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"

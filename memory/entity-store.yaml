@@ -1,0 +1,10 @@
+name: entity-store
+version: 1.0.0
+description: "Long-term entity memory for claude-sdk agent (PostgreSQL)"
+team: showcase
+owner: saha.rajit@gmail.com
+backend: postgresql
+memory_type: entity
+config:
+  namespace_pattern: "{agent_id}:{session_id}"
+scope: agent

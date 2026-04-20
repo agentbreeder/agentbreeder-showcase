@@ -9,6 +9,9 @@ model:
   primary: gemini-2.5-flash
   fallback: gemini-2.0-flash-001
 
+knowledge_bases:
+  - ref: ai-use-cases
+
 deploy:
   cloud: local
   scaling:
@@ -16,3 +19,4 @@ deploy:
     max: 3
   env_vars:
     GOOGLE_API_KEY: "secret://GOOGLE_API_KEY"
+    OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"
