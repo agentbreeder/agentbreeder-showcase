@@ -4,6 +4,9 @@ version: 1.0.0
 team: showcase
 owner: saha.rajit@gmail.com
 
+access:
+  visibility: public
+
 framework: crewai
 model:
   primary: claude-sonnet-4-6
@@ -28,3 +31,5 @@ deploy:
   env_vars:
     ANTHROPIC_API_KEY: "secret://ANTHROPIC_API_KEY"
     OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"
+    GOOGLE_CLOUD_PROJECT: "agentbreeder-cloud"
+    GOOGLE_CLOUD_REGION: "us-central1"

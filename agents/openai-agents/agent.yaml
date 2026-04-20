@@ -4,6 +4,9 @@ version: 1.0.0
 team: showcase
 owner: saha.rajit@gmail.com
 
+access:
+  visibility: public
+
 framework: openai_agents
 model:
   primary: gpt-5.2
@@ -17,3 +20,5 @@ deploy:
   env_vars:
     OPENAI_API_KEY: "secret://OPENAI_API_KEY"
     OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"
+    GOOGLE_CLOUD_PROJECT: "agentbreeder-cloud"
+    GOOGLE_CLOUD_REGION: "us-central1"

@@ -4,6 +4,9 @@ version: 1.0.0
 team: showcase
 owner: saha.rajit@gmail.com
 
+access:
+  visibility: public
+
 framework: langgraph
 model:
   primary: ollama/llama3.2
@@ -20,3 +23,5 @@ deploy:
   env_vars:
     OLLAMA_BASE_URL: "http://host.docker.internal:11434"
     OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"
+    GOOGLE_CLOUD_PROJECT: "agentbreeder-cloud"
+    GOOGLE_CLOUD_REGION: "us-central1"
