@@ -9,7 +9,7 @@ access:
 
 framework: openai_agents
 model:
-  primary: gpt-5.2
+  primary: gpt-4o
   fallback: gpt-4o
 
 deploy:
@@ -22,7 +22,7 @@ deploy:
     OPENTELEMETRY_ENDPOINT: "http://agentbreeder-jaeger:4317"
     GOOGLE_CLOUD_PROJECT: "agentbreeder-cloud"
     GOOGLE_CLOUD_REGION: "us-central1"
-    AWS_ACCOUNT_ID: "988745870276"
+    AWS_ACCOUNT_ID: "secret://AWS_ACCOUNT_ID"
     AWS_REGION: "us-east-2"
     AWS_ECS_CLUSTER: "agentbreeder"
     AWS_ECR_REPO: "agentbreeder"

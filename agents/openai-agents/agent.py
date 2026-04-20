@@ -9,7 +9,7 @@ PROMPT = "What are the top 3 benefits of AI agents in enterprise?"
 agent = Agent(
     name="demo-openai-agents",
     instructions="You are a helpful enterprise AI analyst. Answer concisely.",
-    model="gpt-5.2",
+    model="gpt-4o",
 )
 
 

@@ -1,7 +1,16 @@
 .env
+venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
 node_modules/
 playwright-report/
+test-results/
 demos/**/screenshots/*.png
 .agentbreeder/
+*.DS_Store

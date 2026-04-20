@@ -20,7 +20,7 @@ Side-by-side comparison of 5 AI agent frameworks (Claude SDK, OpenAI Agents, Goo
 
 ```bash
 # 1. Clone and install
-git clone <repo>
+git clone https://github.com/agentbreeder/agentbreeder-showcase
 cd agentbreeder-showcase
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
@@ -50,8 +50,8 @@ agentbreeder orchestration run showcase
 | Agent | Framework | Model |
 |---|---|---|
 | demo-claude-sdk | Claude SDK | claude-sonnet-4-6 |
-| demo-openai-agents | OpenAI Agents SDK | gpt-5.2 |
-| demo-google-adk | Google ADK | gemini-3.0-flash |
+| demo-openai-agents | OpenAI Agents SDK | gpt-4o |
+| demo-google-adk | Google ADK | gemini-2.5-flash |
 | demo-langgraph | LangGraph | ollama/gemma4 (local) |
 | demo-crewai | CrewAI | claude-sonnet-4-6 |
 
@@ -63,6 +63,16 @@ agentbreeder orchestration run showcase
 ./deploy/azure.sh  # Azure Container Apps
 ```
 
+## Evals
+
+```bash
+source venv/bin/activate
+agentbreeder up          # must be running
+python evals/run_evals.py
+```
+
+Runs 3 QA prompts against all 5 agents and prints correctness + relevance scores.
+
 ## UI Demos (Playwright)
 
 ```bash
@@ -70,4 +80,24 @@ npm run demo         # run all 5 UI demos in parallel
 npm run demo:report  # open HTML report with screenshots
 ```
 
-Dashboard: http://localhost:3001
+Dashboard: http://localhost:3001 — log in with `admin@agentbreeder.local` / `plant`.
+
+## Teardown
+
+```bash
+# Stop all local agent containers
+agentbreeder teardown demo-claude-sdk
+agentbreeder teardown demo-openai-agents
+agentbreeder teardown demo-google-adk
+agentbreeder teardown demo-langgraph
+agentbreeder teardown demo-crewai
+
+# GCP — delete Cloud Run services, Artifact Registry images, secrets
+gcloud run services delete <name> --region $GOOGLE_CLOUD_REGION --quiet
+
+# AWS — delete ECS services and task definitions
+aws ecs delete-service --cluster $AWS_ECS_CLUSTER --service <name> --force
+
+# Azure — delete Container Apps
+az containerapp delete --name <name> --resource-group $AZURE_RESOURCE_GROUP
+```

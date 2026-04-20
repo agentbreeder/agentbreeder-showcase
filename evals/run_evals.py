@@ -2,10 +2,10 @@
 
 The eval store is in-memory per process — dataset creation and eval run
 must happen in the same process. This script does both.
+
+Run with: source venv/bin/activate && python evals/run_evals.py
 """
-import sys
 import json
-sys.path.insert(0, "/Users/rajit/agentbreeder-showcase/venv/lib/python3.12/site-packages")
 
 from api.services.eval_service import get_eval_store
 
