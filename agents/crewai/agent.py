@@ -20,16 +20,19 @@ analyst = Agent(
     verbose=False,
 )
 
+_task = Task(
+    description="{prompt}",
+    expected_output="A numbered list of exactly 3 enterprise benefits with brief explanations",
+    agent=analyst,
+)
+
+# Export crew at module level for agentbreeder's crewai server template
+crew = Crew(agents=[analyst], tasks=[_task], verbose=False)
+
 
 def run(prompt: str = PROMPT) -> str:
     try:
-        task = Task(
-            description=prompt,
-            expected_output="A numbered list of exactly 3 enterprise benefits with brief explanations",
-            agent=analyst,
-        )
-        crew = Crew(agents=[analyst], tasks=[task], verbose=False)
-        result = crew.kickoff()
+        result = crew.kickoff(inputs={"prompt": prompt})
         return str(result)
     except Exception as e:
         raise RuntimeError(f"CrewAI agent failed: {e}") from e
