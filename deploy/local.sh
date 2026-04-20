@@ -12,7 +12,7 @@ source venv/bin/activate
 # Validate all agents first
 echo "→ Validating all agent configs..."
 for agent_dir in agents/*/; do
-  (cd "$agent_dir" && agentbreeder validate && echo "  ✓ $(basename $agent_dir)")
+  agentbreeder validate "$agent_dir/agent.yaml" && echo "  ✓ $(basename $agent_dir)"
 done
 
 # Deploy each agent
