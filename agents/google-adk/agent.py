@@ -12,7 +12,7 @@ PROMPT = "What are the top 3 benefits of AI agents in enterprise?"
 
 _agent = Agent(
     name="demo_google_adk",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction="You are a helpful enterprise AI analyst. Answer concisely.",
 )
 
