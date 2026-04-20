@@ -38,5 +38,5 @@ def run(prompt: str = PROMPT) -> str:
         raise RuntimeError(f"CrewAI agent failed: {e}") from e
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(run())

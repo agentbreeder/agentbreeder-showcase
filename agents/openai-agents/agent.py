@@ -1,4 +1,3 @@
-import os
 from agents import Agent, Runner
 from dotenv import load_dotenv
 
@@ -21,5 +20,5 @@ def run(prompt: str = PROMPT) -> str:
         raise RuntimeError(f"OpenAI Agents agent failed: {e}") from e
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(run())

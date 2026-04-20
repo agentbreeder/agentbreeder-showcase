@@ -1,5 +1,4 @@
 import asyncio
-import os
 from google.adk.agents import Agent
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
@@ -42,5 +41,5 @@ def run(prompt: str = PROMPT) -> str:
         raise RuntimeError(f"Google ADK agent failed: {e}") from e
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(run())

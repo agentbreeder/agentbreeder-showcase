@@ -68,9 +68,12 @@ app = graph.compile()
 
 
 def run(prompt: str = PROMPT) -> str:
-    result = app.invoke({"prompt": prompt, "response": ""})
-    return result["response"]
+    try:
+        result = app.invoke({"prompt": prompt, "response": ""})
+        return result["response"]
+    except Exception as e:
+        raise RuntimeError(f"LangGraph/Ollama agent failed: {e}") from e
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(run())
