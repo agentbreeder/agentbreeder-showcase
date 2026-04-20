@@ -5,6 +5,12 @@ echo "=== AgentBreeder Showcase — GCP Deploy ==="
 set -a && source .env && set +a
 source venv/bin/activate
 
+# Validate all agent configs before deploying
+echo "→ Validating all agent configs..."
+for agent_dir in agents/*/; do
+  (cd "$agent_dir" && agentbreeder validate && echo "  ✓ $(basename $agent_dir)")
+done
+
 # Authenticate
 gcloud auth application-default login
 
