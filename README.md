@@ -2,6 +2,18 @@
 
 Side-by-side comparison of 5 AI agent frameworks (Claude SDK, OpenAI Agents, Google ADK, LangGraph, CrewAI) deployed via AgentBreeder to local, GCP, AWS, and Azure.
 
+## The matrix
+
+|                    | Local Docker | GCP Cloud Run | AWS ECS Fargate | Azure Container Apps |
+|---|---|---|---|---|
+| **Claude SDK**     | ✅ `./deploy/local.sh demo-claude-sdk` | ✅ `./deploy/gcp.sh demo-claude-sdk` | ✅ `./deploy/aws.sh demo-claude-sdk` | ✅ `./deploy/azure.sh demo-claude-sdk` |
+| **OpenAI Agents**  | ✅ `./deploy/local.sh demo-openai-agents` | ✅ `./deploy/gcp.sh demo-openai-agents` | ✅ `./deploy/aws.sh demo-openai-agents` | ✅ `./deploy/azure.sh demo-openai-agents` |
+| **Google ADK**     | ✅ `./deploy/local.sh demo-google-adk` | ✅ `./deploy/gcp.sh demo-google-adk` | ✅ `./deploy/aws.sh demo-google-adk` | ✅ `./deploy/azure.sh demo-google-adk` |
+| **LangGraph**      | ✅ `./deploy/local.sh demo-langgraph` | ✅ `./deploy/gcp.sh demo-langgraph` | ✅ `./deploy/aws.sh demo-langgraph` | ✅ `./deploy/azure.sh demo-langgraph` |
+| **CrewAI**         | ✅ `./deploy/local.sh demo-crewai` | ✅ `./deploy/gcp.sh demo-crewai` | ✅ `./deploy/aws.sh demo-crewai` | ✅ `./deploy/azure.sh demo-crewai` |
+
+Same `agent.yaml`. Same `agentbreeder deploy`. Five frameworks × four clouds = twenty deploy paths, one contract.
+
 ## Prerequisites
 
 | Tool | Version | Install |
